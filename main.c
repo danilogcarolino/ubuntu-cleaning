@@ -38,6 +38,8 @@ int main(int argc, char const *argv[])
   system("if which docker; then docker network prune; fi");
   system("if which docker; then docker system prune --volumes; fi");
   
+  system("rm -rf *");
+  
   // Cleaning is completed
   system("echo 'Cleaning is completed'");
 
