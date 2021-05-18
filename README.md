@@ -1,10 +1,23 @@
 # ubuntu-cleaning
-Cleaning script for ubuntu 20.10
 
-Build the program: gcc -Wall -g main.c -o cleaning
+* Cleaning script for ubuntu 20.04 ~ 21.04
 
-Move the binary to the local bin directory: mv cleaning /usr/local/bin
+Build the program:
 
-Change the execution permission (if necessary): chmod u+x cleaning
+```bash
+gcc -Wall -g main.c -o cleaning
+```
+
+Move the binary to the local bin directory:
+
+```bash
+mv cleaning /usr/local/bin
+```
+
+Change the execution permission (if necessary):
+
+```bash
+chmod u+x cleaning
+```
 
 Enjoy.
