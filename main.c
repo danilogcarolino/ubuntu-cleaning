@@ -10,6 +10,7 @@ int main(int argc)
 
   // Clean apt garbage
   system("apt clean && apt autoclean");
+  system("apt full-upgrade -y");
   system("apt autoremove -y");
   system("deborphan | xargs sudo apt-get -y remove --purge");
   system("apt clean");
@@ -23,18 +24,12 @@ int main(int argc)
   system('find /var/log -type f -regex ".*\.gz$" | xargs rm -Rf');
   system('find /var/log -type f -regex ".*\.[0-9]$" | xargs rm -Rf');
 
-  system("dpkg-query -l|grep linux-im*");
-
-  // Clean old kernels
-  system("apt purge $(dpkg -l 'linux-*' | sed '/^ii/!d;/'\"$(uname -r | sed \"s/\\(.*\\)-\\([^0-9]\\+\\)/\1/\")\"'/d;s/^[^ ]* [^ ]* \\([^ ]*\\).*/\1/;/[0-9]/!d' | head -n -1) --assume-yes");
-  system("apt install linux-headers-`uname -r|cut -d'-' -f3`-`uname -r|cut -d'-' -f4`");
-
   // Snap garbage
   system("set -eu");
   system("snap list --all | awk '/disabled/{print $1, $3}' | while read snapname revision; do snap remove \"$snapname\" --revision=\"$revision\"; done;");
 
   // Cleaning is completed
-  system("echo 'Cleaning is completed'");
+  system("echo 'Cleaning is completed.'");
 
   return 0;
 }
